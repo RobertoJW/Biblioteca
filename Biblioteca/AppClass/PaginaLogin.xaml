@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Iconos="clr-namespace:Biblioteca.Iconos"
+             xmlns:views="clr-namespace:Biblioteca.Vistas"
+             x:Class="Biblioteca.AppClass.PaginaLogin"
+             Title="PaginaLogin">
+
+    <Grid RowDefinitions="0.3*,0.8*" BackgroundColor="{StaticResource AzulOscurisimo}">
+        <Image Style="{StaticResource LogoEmpresa}"/>
+
+        <Grid Grid.Row="1">
+            <!-- Rectángulo de fondo -->
+            <Border Style="{StaticResource RectanguloFormularioLogin}">
+                <Border.StrokeShape>
+                    <RoundRectangle CornerRadius="20,20,0,0"/>
+                </Border.StrokeShape>
+            </Border>
+
+            <!--  Layout principal de la parte inferior  -->
+            <Grid Padding="15"
+                  HorizontalOptions="Center"
+                  RowDefinitions="Auto,*">
+
+                <Grid.WidthRequest>
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="Android" Value="400"/>
+                        <On Platform="iOS" Value="400"/>
+                        <On Platform="WinUI" Value="400"/>
+                    </OnPlatform>
+                </Grid.WidthRequest>
+
+                <!--  Parte fija: título + tabs  -->
+                <VerticalStackLayout Grid.Row="0" Spacing="20">
+                    <Label FontAttributes="Bold"
+                           FontFamily="MontserratRegular"
+                           FontSize="18"
+                           HorizontalOptions="Center"
+                           Text="Empiece configurando su cuenta"
+                           TextColor="Black" />
+
+                    <Border Margin="0,0,0,10"
+                            Padding="0"
+                            BackgroundColor="White"
+                            HeightRequest="44"
+                            HorizontalOptions="Fill"
+                            StrokeThickness="0">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="22" />
+                        </Border.StrokeShape>
+
+                        <Grid x:Name="SelectorGrid"
+                              ColumnDefinitions="*,*"
+                              HorizontalOptions="Fill"
+                              VerticalOptions="Fill">
+
+                            <Border x:Name="SliderBackground"
+                                    Margin="2"
+                                    BackgroundColor="White"
+                                    ZIndex="1">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="18" />
+                                </Border.StrokeShape>
+                            </Border>
+
+                            <Button x:Name="LoginTab"
+                                    Grid.Column="0"
+                                    BackgroundColor="Transparent"
+                                    Clicked="OnLoginSelected"
+                                    FontAttributes="Bold"
+                                    FontFamily="MontserratRegular"
+                                    Text="Iniciar sesión"
+                                    TextColor="Black"
+                                    ZIndex="2" />
+
+                            <Button x:Name="RegisterTab"
+                                    Grid.Column="1"
+                                    BackgroundColor="Transparent"
+                                    Clicked="OnRegisterSelected"
+                                    FontAttributes="Bold"
+                                    FontFamily="MontserratRegular"
+                                    Text="Registrarse"
+                                    TextColor="Gray"
+                                    ZIndex="2" />
+                        </Grid>
+                    </Border>
+                </VerticalStackLayout>
+
+                <!--  Parte scrollable: formularios  -->
+                <ScrollView Grid.Row="1" VerticalScrollBarVisibility="Never">
+                    <Grid x:Name="FormContainer">
+
+                        <!--  Formulario de inicio de sesión  -->
+                        <StackLayout x:Name="LoginForm"
+                                     Opacity="1"
+                                     Spacing="15">
+
+                            <!--  Campo de correo electrónico  -->
+                            <Border x:Name="EmailLoginBorder"
+                                    Padding="10"
+                                    BackgroundColor="White"
+                                    HeightRequest="75"
+                                    HorizontalOptions="Fill"
+                                    Stroke="Gray"
+                                    StrokeThickness="1">
+
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="12" />
+                                </Border.StrokeShape>
+
+                                <VerticalStackLayout Spacing="2">
+                                    <Label Margin="5,0,0,0"
+                                           FontAttributes="Bold"
+                                           FontSize="12"
+                                           Text="Correo electrónico"
+                                           TextColor="Gray" />
+
+                                    <Grid ColumnDefinitions="Auto,*"
+                                          VerticalOptions="Center">
+                                        <Image Grid.Column="0">
+                                            <Image.Source>
+                                                <FontImageSource FontFamily="Iconos"
+                                                                 Glyph="{x:Static Iconos:Iconos.mail}"
+                                                                 Color="Gray" />
+                                            </Image.Source>
+                                        </Image>
+
+                                        <Entry x:Name="EmailLoginEntry"
+                                               Grid.Column="1"
+                                               Margin="5,0,0,0"
+                                               BackgroundColor="Transparent"
+                                               FontSize="16"
+                                               Placeholder="Introduzca su correo electrónico..."
+                                               TextChanged="OnCorreoTextChanged"
+                                               TextColor="Black" />
+                                    </Grid>
+                                </VerticalStackLayout>
+                            </Border>
+
+                            <Label x:Name="CorreoErrorLabel"
+                                   FontSize="12"
+                                   IsVisible="False"
+                                   Opacity="0"
+                                   Text="Formato de correo electrónico no válido."
+                                   TextColor="Red" />
+
+                            <views:LoginClaveVista x:Name="passwordInicioSesion"
+                                                   LabelText="Contraseña"
+                                                   PlaceholderText="Introduzca su contraseña..." />
+
+                            <Grid ColumnDefinitions="Auto,Auto">
+                                <CheckBox x:Name="MantenerSesion"
+                                          Grid.Column="0"
+                                          IsChecked="False"
+                                          Color="Gray" />
+                                <Label Grid.Column="1"
+                                       FontAttributes="Bold"
+                                       Text="Mantener sesión iniciada"
+                                       TextColor="Gray"
+                                       TextDecorations="Underline"
+                                       VerticalOptions="Center">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                              Tapped="TapGestureRecognizer_Tapped" />
+                                    </Label.GestureRecognizers>
+                                </Label>
+                            </Grid>
+
+                            <Border Padding="0"
+                                    BackgroundColor="{StaticResource AzulOscuro}"
+                                    StrokeThickness="0">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="20"/>
+                                </Border.StrokeShape>
+                                <Button Padding="10,5"
+                                        BackgroundColor="Transparent"
+                                        Clicked="OnLoginButtonClicked"
+                                        FontAttributes="Bold"
+                                        FontFamily="MontserratRegular"
+                                        FontSize="16"
+                                        Text="Iniciar sesión"
+                                        TextColor="White" />
+                            </Border>
+                        </StackLayout>
+
+                        <!--  Formulario de registro  -->
+                        <StackLayout x:Name="RegisterForm"
+                                     IsVisible="False"
+                                     Opacity="0"
+                                     Spacing="15">
+
+                            <Border x:Name="UserRegisterBorder"
+                                    Padding="10"
+                                    BackgroundColor="White"
+                                    HeightRequest="75"
+                                    HorizontalOptions="Fill"
+                                    Stroke="Gray"
+                                    StrokeThickness="1">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="12" />
+                                </Border.StrokeShape>
+
+                                <VerticalStackLayout Spacing="2">
+                                    <Label Margin="5,0,0,0"
+                                           FontAttributes="Bold"
+                                           FontSize="12"
+                                           Text="Nombre de usuario"
+                                           TextColor="Gray" />
+
+                                    <Grid ColumnDefinitions="Auto,*"
+                                          VerticalOptions="Center">
+                                        <Image Grid.Column="0">
+                                            <Image.Source>
+                                                <FontImageSource FontFamily="Iconos"
+                                                                 Glyph="{x:Static Iconos:Iconos.usuario}"
+                                                                 Color="Gray" />
+                                            </Image.Source>
+                                        </Image>
+
+                                        <Entry x:Name="UserRegisterEntry"
+                                               Grid.Column="1"
+                                               Margin="5,0,0,0"
+                                               BackgroundColor="Transparent"
+                                               FontSize="16"
+                                               Placeholder="Introduzca su nombre de usuario..."
+                                               TextChanged="OnUserRegisterTextChanged"
+                                               TextColor="Black" />
+                                    </Grid>
+                                </VerticalStackLayout>
+                            </Border>
+
+                            <Label x:Name="UserErrorLabel"
+                                   FontSize="12"
+                                   IsVisible="False"
+                                   Opacity="0"
+                                   Text="El campo de nombre de usuario es obligatorio."
+                                   TextColor="Red" />
+
+                            <Border x:Name="EmailRegisterBorder"
+                                    Padding="10"
+                                    BackgroundColor="White"
+                                    HeightRequest="75"
+                                    HorizontalOptions="Fill"
+                                    Stroke="Gray"
+                                    StrokeThickness="1">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="12" />
+                                </Border.StrokeShape>
+
+                                <VerticalStackLayout Spacing="2">
+                                    <Label Margin="5,0,0,0"
+                                           FontAttributes="Bold"
+                                           FontSize="12"
+                                           Text="Correo electrónico"
+                                           TextColor="Gray" />
+
+                                    <Grid ColumnDefinitions="Auto,*"
+                                          VerticalOptions="Center">
+                                        <Image Grid.Column="0">
+                                            <Image.Source>
+                                                <FontImageSource FontFamily="Iconos"
+                                                                 Glyph="{x:Static Iconos:Iconos.mail}"
+                                                                 Color="Gray" />
+                                            </Image.Source>
+                                        </Image>
+
+                                        <Entry x:Name="EmailRegisterEntry"
+                                               Grid.Column="1"
+                                               Margin="5,0,0,0"
+                                               BackgroundColor="Transparent"
+                                               FontSize="16"
+                                               Placeholder="Introduzca su correo electrónico..."
+                                               TextChanged="OnCorreoRegisterTextChanged"
+                                               TextColor="Black" />
+                                    </Grid>
+                                </VerticalStackLayout>
+                            </Border>
+
+                            <Label x:Name="EmailErrorLabel"
+                                   FontSize="12"
+                                   IsVisible="False"
+                                   Opacity="0"
+                                   Text="Formato de correo electrónico no válido."
+                                   TextColor="Red" />
+
+                            <views:LoginClaveVista x:Name="passwordRegistro"
+                                                   LabelText="Contraseña"
+                                                   PlaceholderText="Introduzca su contraseña..." />
+
+                            <views:LoginClaveVista x:Name="passwordRegistro2"
+                                                   LabelText="Confirmar contraseña"
+                                                   PlaceholderText="Repita su contraseña..." />
+
+                            <Border Padding="0"
+                                    BackgroundColor="{StaticResource Gray500}"
+                                    StrokeThickness="0">
+                                <Border.StrokeShape>
+                                    <RoundRectangle CornerRadius="20"/>
+                                </Border.StrokeShape>
+                                <Button Padding="10,5"
+                                        BackgroundColor="Transparent"
+                                        Clicked="OnRegisterButtonClicked"
+                                        FontAttributes="Bold"
+                                        FontFamily="MontserratRegular"
+                                        FontSize="16"
+                                        Text="Registrarse"
+                                        TextColor="White" />
+                            </Border>
+                        </StackLayout>
+                    </Grid>
+                </ScrollView>
+            </Grid>
+        </Grid>
+    </Grid>
+</ContentPage>

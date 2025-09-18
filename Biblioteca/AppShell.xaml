@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Biblioteca.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:AppClass="clr-namespace:Biblioteca.AppClass"
+    xmlns:Icono="clr-namespace:Biblioteca.Iconos"
+    xmlns:local="clr-namespace:Biblioteca"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.TabBarBackgroundColor="{StaticResource AzulOscurisimo}"
+    Shell.TabBarDisabledColor="White"
+    Shell.TabBarUnselectedColor="white"
+    Shell.TabBarForegroundColor="{StaticResource AzulClaro}"
+    Shell.TabBarTitleColor="{StaticResource AzulClaro}"
+    BackgroundColor="{StaticResource AzulOscurisimo}"
+    Title="Biblioteca">
+
+    <!--  TabBar principal (solo aparece tras login)  -->
+    <TabBar x:Name="MainTabBar" Shell.NavBarIsVisible="False">
+
+        <ShellContent
+            Title="Inicio"
+            ContentTemplate="{DataTemplate AppClass:MainPage}"
+            Route="MainPage">
+            <ShellContent.Icon>
+                <FontImageSource
+                    FontFamily="Iconos"
+                    Glyph="{x:Static Icono:Iconos.home}"
+                    Color="White" />
+            </ShellContent.Icon>
+        </ShellContent>
+
+        <ShellContent
+            Title="Favoritos"
+            ContentTemplate="{DataTemplate AppClass:Favoritos}"
+            Route="Favoritos">
+            <ShellContent.Icon>
+                <FontImageSource
+                    FontFamily="Iconos"
+                    Glyph="{x:Static Icono:Iconos.corazon}"
+                    Color="White" />
+            </ShellContent.Icon>
+        </ShellContent>
+
+        <ShellContent
+            Title="Ajustes"
+            ContentTemplate="{DataTemplate AppClass:PaginaLogin}"
+            Route="PaginaLogin">
+            <ShellContent.Icon>
+                <FontImageSource
+                    FontFamily="Iconos"
+                    Glyph="{x:Static Icono:Iconos.ajustes}"
+                    Color="White" />
+            </ShellContent.Icon>
+        </ShellContent>
+    </TabBar>
+</Shell>
