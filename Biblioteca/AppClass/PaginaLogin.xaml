@@ -54,12 +54,14 @@
                                     Grid.Column="0"
                                     Clicked="OnLoginSelected"
                                     Text="Iniciar sesión" 
+                                    TextColor="Black"
                                     Style="{StaticResource BtnLoginSignUp}"/>
 
                             <Button x:Name="RegisterTab"
                                     Grid.Column="1"
                                     Clicked="OnRegisterSelected"
-                                    Text="Registrarse" 
+                                    Text="Registrarse"
+                                    TextColor="Gray"
                                     Style="{StaticResource BtnLoginSignUp}"/>
                         </Grid>
                     </Border>
@@ -75,23 +77,11 @@
                                      Spacing="15">
 
                             <!--  Campo de correo electrónico  -->
-                            <Border x:Name="EmailLoginBorder"
-                                    Padding="10"
-                                    BackgroundColor="White"
-                                    HeightRequest="75"
-                                    HorizontalOptions="Fill"
-                                    Stroke="Gray"
-                                    StrokeThickness="1">
-                                <Border.StrokeShape>
-                                    <RoundRectangle CornerRadius="12" />
-                                </Border.StrokeShape>
+                            <Border x:Name="EmailLoginBorder" Style="{StaticResource Border2}">
 
                                 <VerticalStackLayout Spacing="2">
-                                    <Label Margin="5,0,0,0"
-                                           FontAttributes="Bold"
-                                           FontSize="12"
-                                           Text="Correo electrónico"
-                                           TextColor="Gray" />
+                                    
+                                    <Label Text="Correo electrónico" Style="{StaticResource EtiquetaCampos}"/>
 
                                     <Grid ColumnDefinitions="Auto,*"
                                           VerticalOptions="Center">
@@ -105,22 +95,17 @@
 
                                         <Entry x:Name="EmailLoginEntry"
                                                Grid.Column="1"
-                                               Margin="5,0,0,0"
-                                               BackgroundColor="Transparent"
-                                               FontSize="16"
                                                Placeholder="Introduzca su correo electrónico..."
                                                TextChanged="OnCorreoTextChanged"
-                                               TextColor="Black" />
+                                               Style="{StaticResource CampoFormulario1}"/>
                                     </Grid>
                                 </VerticalStackLayout>
                             </Border>
 
                             <Label x:Name="CorreoErrorLabel"
-                                   FontSize="12"
                                    IsVisible="False"
-                                   Opacity="0"
                                    Text="Formato de correo electrónico no válido."
-                                   TextColor="Red" />
+                                   Style="{StaticResource MensajeError}"/>
 
                             <views:LoginClaveVista x:Name="passwordInicioSesion"
                                                    LabelText="Contraseña"
@@ -132,11 +117,8 @@
                                           IsChecked="False"
                                           Color="Gray" />
                                 <Label Grid.Column="1"
-                                       FontAttributes="Bold"
                                        Text="Mantener sesión iniciada"
-                                       TextColor="Gray"
-                                       TextDecorations="Underline"
-                                       VerticalOptions="Center">
+                                       Style="{StaticResource EtiquetaCheckBox}">
                                     <Label.GestureRecognizers>
                                         <TapGestureRecognizer NumberOfTapsRequired="1"
                                                               Tapped="TapGestureRecognizer_Tapped" />
@@ -150,14 +132,9 @@
                                 <Border.StrokeShape>
                                     <RoundRectangle CornerRadius="20"/>
                                 </Border.StrokeShape>
-                                <Button Padding="10,5"
-                                        BackgroundColor="Transparent"
-                                        Clicked="OnLoginButtonClicked"
-                                        FontAttributes="Bold"
-                                        FontFamily="MontserratRegular"
-                                        FontSize="16"
+                                <Button Clicked="OnLoginButtonClicked"
                                         Text="Iniciar sesión"
-                                        TextColor="White" />
+                                        Style="{StaticResource BtnFinalFormulario}"/>
                             </Border>
                         </StackLayout>
 
@@ -167,23 +144,10 @@
                                      Opacity="0"
                                      Spacing="15">
 
-                            <Border x:Name="UserRegisterBorder"
-                                    Padding="10"
-                                    BackgroundColor="White"
-                                    HeightRequest="75"
-                                    HorizontalOptions="Fill"
-                                    Stroke="Gray"
-                                    StrokeThickness="1">
-                                <Border.StrokeShape>
-                                    <RoundRectangle CornerRadius="12" />
-                                </Border.StrokeShape>
+                            <Border x:Name="UserRegisterBorder" Style="{StaticResource Border2}">
 
                                 <VerticalStackLayout Spacing="2">
-                                    <Label Margin="5,0,0,0"
-                                           FontAttributes="Bold"
-                                           FontSize="12"
-                                           Text="Nombre de usuario"
-                                           TextColor="Gray" />
+                                    <Label Text="Nombre de usuario" Style="{StaticResource EtiquetaCampos}"/>
 
                                     <Grid ColumnDefinitions="Auto,*"
                                           VerticalOptions="Center">
@@ -197,40 +161,22 @@
 
                                         <Entry x:Name="UserRegisterEntry"
                                                Grid.Column="1"
-                                               Margin="5,0,0,0"
-                                               BackgroundColor="Transparent"
-                                               FontSize="16"
                                                Placeholder="Introduzca su nombre de usuario..."
                                                TextChanged="OnUserRegisterTextChanged"
-                                               TextColor="Black" />
+                                               Style="{StaticResource CampoFormulario1}"/>
                                     </Grid>
                                 </VerticalStackLayout>
                             </Border>
 
                             <Label x:Name="UserErrorLabel"
-                                   FontSize="12"
                                    IsVisible="False"
-                                   Opacity="0"
                                    Text="El campo de nombre de usuario es obligatorio."
-                                   TextColor="Red" />
+                                   Style="{StaticResource MensajeError}"/>
 
-                            <Border x:Name="EmailRegisterBorder"
-                                    Padding="10"
-                                    BackgroundColor="White"
-                                    HeightRequest="75"
-                                    HorizontalOptions="Fill"
-                                    Stroke="Gray"
-                                    StrokeThickness="1">
-                                <Border.StrokeShape>
-                                    <RoundRectangle CornerRadius="12" />
-                                </Border.StrokeShape>
+                            <Border x:Name="EmailRegisterBorder" Style="{StaticResource Border2}">
 
                                 <VerticalStackLayout Spacing="2">
-                                    <Label Margin="5,0,0,0"
-                                           FontAttributes="Bold"
-                                           FontSize="12"
-                                           Text="Correo electrónico"
-                                           TextColor="Gray" />
+                                    <Label Text="Correo electrónico" Style="{StaticResource EtiquetaCampos}"/>
 
                                     <Grid ColumnDefinitions="Auto,*"
                                           VerticalOptions="Center">
@@ -244,22 +190,17 @@
 
                                         <Entry x:Name="EmailRegisterEntry"
                                                Grid.Column="1"
-                                               Margin="5,0,0,0"
-                                               BackgroundColor="Transparent"
-                                               FontSize="16"
                                                Placeholder="Introduzca su correo electrónico..."
                                                TextChanged="OnCorreoRegisterTextChanged"
-                                               TextColor="Black" />
+                                               Style="{StaticResource CampoFormulario1}"/>
                                     </Grid>
                                 </VerticalStackLayout>
                             </Border>
 
                             <Label x:Name="EmailErrorLabel"
-                                   FontSize="12"
                                    IsVisible="False"
-                                   Opacity="0"
                                    Text="Formato de correo electrónico no válido."
-                                   TextColor="Red" />
+                                   Style="{StaticResource MensajeError}"/>
 
                             <views:LoginClaveVista x:Name="passwordRegistro"
                                                    LabelText="Contraseña"
@@ -270,19 +211,14 @@
                                                    PlaceholderText="Repita su contraseña..." />
 
                             <Border Padding="0"
-                                    BackgroundColor="{StaticResource Gray500}"
+                                    BackgroundColor="{StaticResource AzulOscuro}"
                                     StrokeThickness="0">
                                 <Border.StrokeShape>
                                     <RoundRectangle CornerRadius="20"/>
                                 </Border.StrokeShape>
-                                <Button Padding="10,5"
-                                        BackgroundColor="Transparent"
-                                        Clicked="OnRegisterButtonClicked"
-                                        FontAttributes="Bold"
-                                        FontFamily="MontserratRegular"
-                                        FontSize="16"
+                                <Button Clicked="OnRegisterButtonClicked"
                                         Text="Registrarse"
-                                        TextColor="White" />
+                                        Style="{StaticResource BtnFinalFormulario}"/>
                             </Border>
                         </StackLayout>
                     </Grid>

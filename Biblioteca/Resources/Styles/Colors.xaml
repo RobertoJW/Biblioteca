@@ -19,7 +19,7 @@
     <Color x:Key="MidnightBlue">#190649</Color>
     <Color x:Key="OffBlack">#1f1f1f</Color>
     <Color x:Key="Dorado">#e6b800</Color>
-    <Color x:Key="AzulOscuro">#000066</Color>
+    <Color x:Key="AzulOscuro">#162C41</Color>
     <Color x:Key="AzulClaro">#1aa3ff</Color>
     <Color x:Key="Hielo">#ccffff</Color>
     <Color x:Key="VerdeClaro">#e6ffe6</Color>
