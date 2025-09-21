@@ -32,22 +32,9 @@
 
                 <!--  Parte fija: título + tabs  -->
                 <VerticalStackLayout Grid.Row="0" Spacing="20">
-                    <Label FontAttributes="Bold"
-                           FontFamily="MontserratRegular"
-                           FontSize="18"
-                           HorizontalOptions="Center"
-                           Text="Empiece configurando su cuenta"
-                           TextColor="Black" />
+                    <Label Text="Empiece configurando su cuenta" Style="{StaticResource MensajeConfigurarCuenta}"/>
 
-                    <Border Margin="0,0,0,10"
-                            Padding="0"
-                            BackgroundColor="White"
-                            HeightRequest="44"
-                            HorizontalOptions="Fill"
-                            StrokeThickness="0">
-                        <Border.StrokeShape>
-                            <RoundRectangle CornerRadius="22" />
-                        </Border.StrokeShape>
+                    <Border Style="{StaticResource Border1}">
 
                         <Grid x:Name="SelectorGrid"
                               ColumnDefinitions="*,*"
@@ -65,23 +52,15 @@
 
                             <Button x:Name="LoginTab"
                                     Grid.Column="0"
-                                    BackgroundColor="Transparent"
                                     Clicked="OnLoginSelected"
-                                    FontAttributes="Bold"
-                                    FontFamily="MontserratRegular"
-                                    Text="Iniciar sesión"
-                                    TextColor="Black"
-                                    ZIndex="2" />
+                                    Text="Iniciar sesión" 
+                                    Style="{StaticResource BtnLoginSignUp}"/>
 
                             <Button x:Name="RegisterTab"
                                     Grid.Column="1"
-                                    BackgroundColor="Transparent"
                                     Clicked="OnRegisterSelected"
-                                    FontAttributes="Bold"
-                                    FontFamily="MontserratRegular"
-                                    Text="Registrarse"
-                                    TextColor="Gray"
-                                    ZIndex="2" />
+                                    Text="Registrarse" 
+                                    Style="{StaticResource BtnLoginSignUp}"/>
                         </Grid>
                     </Border>
                 </VerticalStackLayout>
@@ -103,7 +82,6 @@
                                     HorizontalOptions="Fill"
                                     Stroke="Gray"
                                     StrokeThickness="1">
-
                                 <Border.StrokeShape>
                                     <RoundRectangle CornerRadius="12" />
                                 </Border.StrokeShape>

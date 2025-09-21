@@ -501,4 +501,32 @@
         </Setter>
     </Style>
 
+    <Style TargetType="Label" x:Key="MensajeConfigurarCuenta">
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="FontFamily" Value="MontserratRegular"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+        <Setter Property="TextColor" Value="Black"/>
+    </Style>
+
+    <Style TargetType="Border" x:Key="Border1">
+        <Setter Property="Margin" Value="0,0,0,10"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="BackgroundColor" Value="White"/>
+        <Setter Property="HeightRequest" Value="44"/>
+        <Setter Property="HorizontalOptions" Value="Fill"/>
+        <Setter Property="StrokeThickness" Value="0"/>
+        <Setter Property="StrokeShape">
+            <RoundRectangle CornerRadius="22"/>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Button" x:Key="BtnLoginSignUp">
+        <Setter Property="BackgroundColor" Value="Transparent"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="FontFamily" Value="MontserratRegular"/>
+        <Setter Property="TextColor" Value="Black"/>
+        <Setter Property="ZIndex" Value="2"/>
+    </Style>
+    
 </ResourceDictionary>
