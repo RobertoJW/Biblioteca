@@ -6,5 +6,10 @@
         {
             InitializeComponent();
         }
+
+        private void BtnBuscarLibro(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
