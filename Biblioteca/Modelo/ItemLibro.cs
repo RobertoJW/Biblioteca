@@ -10,7 +10,7 @@ namespace Biblioteca.Modelo
     public class ItemLibro
     {
         [JsonPropertyName("id")]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [JsonPropertyName("volumeInfo")]
         public VolumenInfo Informacion { get; set; }

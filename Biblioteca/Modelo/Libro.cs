@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Biblioteca.Modelo
 {
-    public class Libro()
+    public class Libro
     {
         [Key]
         public int Id { get; set; }

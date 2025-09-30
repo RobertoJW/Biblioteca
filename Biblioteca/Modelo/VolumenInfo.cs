@@ -25,10 +25,13 @@ namespace Biblioteca.Modelo
         public string? Descripcion { get; set; }
 
         [JsonPropertyName("language")]
-        public List<string> Idiomas { get; set; } = new List<string>();
+        public string Idioma { get; set; }
 
         [JsonPropertyName("categories")]
         public List<string> Genero { get; set; } = new List<string>();
+
+        [JsonPropertyName("averageRating")]
+        public decimal? Rating { get; set; }
 
         [JsonPropertyName("imageLinks")]
         public EnlaceImagenes? Imagenes { get; set; }

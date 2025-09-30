@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net.Http.Json;
 using Biblioteca.Modelo;
+using System.Text.Json;
+using System.Diagnostics;
 
 namespace Biblioteca.Servicios
 {
@@ -30,6 +32,63 @@ namespace Biblioteca.Servicios
             return await _http.GetFromJsonAsync<RespuestaLibros>(url);
 
         }
+
+        public async Task<List<Libro>> CargarLibrosPopulares()
+        {
+            string urlPopulares = "https://www.googleapis.com/books/v1/volumes?q=subject:fiction&orderBy=relevance&maxResults=20";
+            var respuesta = await _http.GetStringAsync(urlPopulares);
+            
+            var resultado = JsonSerializer.Deserialize<RespuestaLibros>(respuesta);
+
+            return resultado.Libros.Select(Libros => new Libro
+            {
+                Titulo = Libros.Informacion.Titulo,
+                Autor = Libros.Informacion.Autores.FirstOrDefault() ?? "Desconocido",
+                Editorial = Libros.Informacion.Editorial ?? "Desconocido",
+                Portada = Libros.Informacion.Imagenes?.Portada.Replace("http://", "https://") ??
+                "https://via.placeholder.com/150x200?text=No+Image",
+                Rating = Libros.Informacion.Rating ?? 0
+                
+            }).ToList() ?? new List<Libro>();
+        }
+
+        public async Task<List<Libro>> CargarLibrosNuevos()
+        {
+            string url = "https://www.googleapis.com/books/v1/volumes?q=book&orderBy=newest&maxResults=20";
+            var respuesta = await _http.GetStringAsync(url);
+            var resultado = JsonSerializer.Deserialize<RespuestaLibros>(respuesta);
+
+            return resultado.Libros.Select(l => new Libro
+            {
+                Titulo = l.Informacion.Titulo,
+                Autor = l.Informacion.Autores.FirstOrDefault() ?? "Desconocido",
+                Editorial = l.Informacion.Editorial ?? "Desconocido",
+                Portada = l.Informacion.Imagenes?.Portada.Replace("http://", "https://") ??
+                "https://via.placeholder.com/150x200?text=No+Image",
+                Rating = l.Informacion.Rating ?? 0
+
+            }).ToList() ?? new List<Libro>();
+        }
+
+        public async Task<List<Libro>> CargarLibrosMasVendidos()
+        {
+            string url = "https://www.googleapis.com/books/v1/volumes?q=bestseller&maxResults=20";
+            var respuesta = await _http.GetStringAsync(url);
+
+            var resultado = JsonSerializer.Deserialize<RespuestaLibros>(respuesta);
+
+            return resultado.Libros.Select(Libros => new Libro
+            {
+                Titulo = Libros.Informacion.Titulo,
+                Autor = Libros.Informacion.Autores.FirstOrDefault() ?? "Desconocido",
+                Editorial = Libros.Informacion.Editorial ?? "Desconocido",
+                Portada = Libros.Informacion.Imagenes?.Portada.Replace("http://", "https://") ??
+                "https://via.placeholder.com/150x200?text=No+Image",
+                Rating = Libros.Informacion.Rating ?? 0
+
+            }).ToList() ?? new List<Libro>();
+        }
+
         /*
         public async Task<List<ItemLibro>> FetchManyAsync(string query, int desiredCount = 200, string? apiKey = null)
         {
@@ -59,5 +118,6 @@ namespace Biblioteca.Servicios
             return all;
         }
         */
+
     }
 }

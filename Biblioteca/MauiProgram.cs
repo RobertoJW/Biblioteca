@@ -19,6 +19,7 @@ namespace Biblioteca
                     fonts.AddFont("Poppins-Bold.ttf", "PoppinsBold");
                     fonts.AddFont("Montserrat-Regular.ttf", "MontserratRegular");
                     fonts.AddFont("Montserrat-Bold.ttf", "MontserratBold");
+                    fonts.AddFont("Playfair.ttf", "playfair");
                 });
 #if DEBUG
             builder.Logging.AddDebug();

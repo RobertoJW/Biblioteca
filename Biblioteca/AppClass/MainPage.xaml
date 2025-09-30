@@ -1,40 +1,138 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundColor="White"
              x:Class="Biblioteca.AppClass.MainPage">
 
-    <Grid RowDefinitions="Auto,*,*,*,*">
-        
-        <!-- Barra de búsqueda y filtros -->
-        <Border Style="{StaticResource BorderBarraBusqueda}">
-            <Grid ColumnDefinitions=".6*,.2*" VerticalOptions="Center">
-                <!-- Barra de búsqueda -->
-                <Grid Grid.Column="0" 
+    <ScrollView>
+
+        <Grid RowDefinitions="Auto,Auto,*,Auto,*,Auto,*">
+
+            <!-- Barra de búsqueda y filtros -->
+            <Border Style="{StaticResource BorderBarraBusqueda}" Grid.Row="0">
+                <Grid ColumnDefinitions=".6*,.2*" VerticalOptions="Center">
+                    <!-- Barra de búsqueda -->
+                    <Grid Grid.Column="0" 
                       ColumnDefinitions="Auto, *" 
                       VerticalOptions="Center">
 
-                    <SearchBar x:Name="BarraBusquedaTxt" 
+                        <SearchBar x:Name="BarraBusquedaTxt" 
                                Placeholder="Buscar en MyB&amp;N" 
                                SearchButtonPressed="BtnBuscarLibro" 
                                Grid.Column="1"
                                Style="{StaticResource BarraBusquedaMod}"/>
+                    </Grid>
+
+                    <Picker x:Name="FiltroLibros" Style="{StaticResource FiltroBusquedaLibro}" Grid.Column="1">
+                        <Picker.Items>
+                            <x:String>Todos</x:String>
+                            <x:String>Género</x:String>
+                            <x:String>Idioma</x:String>
+                            <x:String>Autor</x:String>
+                        </Picker.Items>
+                    </Picker>
+
                 </Grid>
+            </Border>
 
-                <Picker x:Name="FiltroLibros" Style="{StaticResource FiltroBusquedaLibro}" Grid.Column="1">
-                    <Picker.Items>
-                        <x:String>Todos</x:String>
-                        <x:String>Género</x:String>
-                        <x:String>Idioma</x:String>
-                        <x:String>Autor</x:String>
-                    </Picker.Items>
-                </Picker>
-                
-            </Grid>
-        </Border>
+            <Label Text="TENDENCIA" Style="{StaticResource EtiquetaParaFilas}" Grid.Row="1"/>
 
-        <Label Text="MÁS POPULARES 🔥" Style="{StaticResource EtiquetaParaFilas}" Grid.Row="1"/>
-        <Label Text="MEJOR VALORADOS ⭐" Style="{StaticResource EtiquetaParaFilas}" Grid.Row="2"/>
-        <Label Text="NOVEDADES ✨" Style="{StaticResource EtiquetaParaFilas}" Grid.Row="3"/>
-    </Grid>
+            <Border Style="{StaticResource BorderModLibros}" Grid.Row="2">
+                <CollectionView 
+                            x:Name="coleccionLibrosPopulares"
+                            SelectionMode="Single"
+                            BackgroundColor="LightGray">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout Orientation="Horizontal"
+                                     HorizontalItemSpacing="5"/>
+                    </CollectionView.ItemsLayout>
 
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <VerticalStackLayout Padding="5" Margin="5" BackgroundColor="White" WidthRequest="150">
+                                <Image Source="{Binding Portada}"
+                                   HeightRequest="150"
+                                   Aspect="AspectFit"/>
+
+                                <Label Text="{Binding Titulo}"
+                                   FontAttributes="Bold"
+                                   LineBreakMode="TailTruncation"
+                                   Margin="0,5,0,0"/>
+
+                                <Label Text="{Binding Autor}"/>
+                                <!--<Label Text="{Binding Rating, StringFormat='⭐ {0:N1}'}"/>-->
+                            </VerticalStackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+
+                </CollectionView>
+            </Border>
+            
+            <Label Text="BEST SELLERS" Style="{StaticResource EtiquetaParaFilas}" Grid.Row="3"/>
+
+            <CollectionView Grid.Row="4"
+                            x:Name="coleccionLibrosBestSellers"
+                            SelectionMode="Single"
+                            Margin="10,10,10,10"
+                            BackgroundColor="LightGray">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Horizontal"
+                         
+                         HorizontalItemSpacing="5"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout Padding="5" Margin="5" BackgroundColor="White" WidthRequest="150">
+                            <Image Source="{Binding Portada}"
+                                   HeightRequest="150"
+                                   Aspect="AspectFit"/>
+
+                            <Label Text="{Binding Titulo}"
+                                   FontAttributes="Bold"
+                                   LineBreakMode="TailTruncation"
+                                   Margin="0,5,0,0"/>
+
+                            <Label Text="{Binding Autor}"/>
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+            <Label Text="NOVEDADES" Style="{StaticResource EtiquetaParaFilas}" Grid.Row="5"/>
+
+            <CollectionView Grid.Row="6"
+                            x:Name="coleccionLibrosNuevos"
+                            SelectionMode="Single"
+                            Margin="10,10,10,10"
+                            BackgroundColor="LightGray">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Horizontal"
+                                     HorizontalItemSpacing="5"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <VerticalStackLayout Padding="5" Margin="5" BackgroundColor="White" WidthRequest="150">
+                            <Image Source="{Binding Portada}"
+                                   HeightRequest="150"
+                                   Aspect="AspectFit"/>
+
+                            <Label Text="{Binding Titulo}"
+                                   FontAttributes="Bold"
+                                   LineBreakMode="TailTruncation"
+                                   Margin="0,5,0,0"/>
+
+                            <Label Text="{Binding Autor}"/>
+
+                        </VerticalStackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+        </Grid>
+        
+    </ScrollView>
 </ContentPage>
